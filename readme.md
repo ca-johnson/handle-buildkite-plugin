@@ -1,6 +1,6 @@
-# Handle Buildkite Plugin
+# Taskkill Buildkite Plugin
 
-A Buildkite plugin that allows running sysinternals handle.exe prior to checkout, to ensure no files are locked.
+A Buildkite plugin that allows running sysinternals handle64.exe prior to checkout, to ensure no files in the checkout directory are locked.
 
 Requires handle64 in the PATH.
 
@@ -9,6 +9,6 @@ Requires handle64 in the PATH.
 ```yaml
 steps:
   plugins:
-    - ca-johnson/handle:
+    - ca-johnson/taskkill:
         processes: MyApp.exe,BuildTool.exe
 ```
