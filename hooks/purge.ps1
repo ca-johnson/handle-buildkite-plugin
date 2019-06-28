@@ -7,16 +7,16 @@
 # The expected usage is as follows:
 #   powershell -NoProfile -NonInteractive purge.ps1 MyApp.exe,BuildTool.exe
 param(
+  [String] $Dir = $(pwd).Path,
   [String[]] $processes
 )
 
-echo "Running in directory: $(pwd)"
+echo "Running in directory: $Dir"
 
 function Kill-Dangling-Processes {
 	param( [string]$ProcessName )
 
 	echo "Looking for ${ProcessName} processes to kill..."
-	$Dir=$(pwd).Path
 	$Out=$(handle64 -accepteula -nobanner -p "$($ProcessName)" $Dir)
   echo $Out
 	ForEach ($line in $($OUT -split "`r`n"))
