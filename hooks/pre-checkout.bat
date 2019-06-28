@@ -1,0 +1,1 @@
+powershell -ExecutionPolicy Bypass -NoProfile -NonInteractive %~dp0/purge.ps1 %BUILDKITE_PLUGIN_HANDLE_PROCESSES%
