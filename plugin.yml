@@ -6,4 +6,4 @@ requirements:
 configuration:
   properties:
     processes:
-      type: list
+      type: string
