@@ -10,5 +10,5 @@ Requires handle64 in the PATH.
 steps:
   plugins:
     - ca-johnson/handle:
-      processes: MyApp.exe,BuildTool.exe
+        processes: MyApp.exe,BuildTool.exe
 ```
