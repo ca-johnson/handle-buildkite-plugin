@@ -1,9 +1,0 @@
-name: Handle
-description: Run sysinternals handle.exe to terminate processes that have files open
-author: https://github.com/ca-johnson
-requirements:
-  - handle
-configuration:
-  properties:
-    processes:
-      type: list

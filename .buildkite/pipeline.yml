@@ -1,8 +1,0 @@
-steps:
-  - label: "run"
-    command: "echo hello"
-    plugins:
-      ./.buildkite/plugins/handle-buildkite-plugin:
-        processes:
-          - "my-app.exe"
-          - "notepad.exe"
