@@ -17,7 +17,7 @@ function Kill-Dangling-Processes {
 
 	echo "Looking for ${ProcessName} processes to kill..."
 	$Dir=$(pwd).Path
-	$Out=$(handle64 -accepteula -p "$($ProcessName).exe" $Dir)
+	$Out=$(handle64 -accepteula -p "$($ProcessName)" $Dir)
 	ForEach ($line in $($OUT -split "`r`n"))
 	{
 		$Result = $([regex]::Match("$line", "pid: (.*) type"))
