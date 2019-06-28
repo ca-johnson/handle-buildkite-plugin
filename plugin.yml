@@ -1,8 +1,8 @@
-name: Handle
+name: Taskkill
 description: Run sysinternals handle.exe to terminate processes that have files open
 author: https://github.com/ca-johnson
 requirements:
-  - handle
+  - handle64
 configuration:
   properties:
     processes:
