@@ -25,7 +25,7 @@ function Kill-Dangling-Processes {
 		if ($Result.Success)
 		{
 			$ppid = $Result.Groups[1].Value
-			taskkill /f /pid $ppid
+			taskkill /f /t /pid $ppid
 		}
 	}
 }
