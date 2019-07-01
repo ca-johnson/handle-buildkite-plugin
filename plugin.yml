@@ -5,5 +5,5 @@ requirements:
   - handle64
 configuration:
   properties:
-    processes:
+    whitelist:
       type: string
