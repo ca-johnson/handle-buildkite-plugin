@@ -4,9 +4,9 @@ A Buildkite plugin that allows running sysinternals handle64.exe prior to checko
 
 Requires handle64 in the PATH.
 
-Unless blacklist is specified, kills all processes.
+Unless a whitelist is specified, kills all processes.
 
-# Example
+## Example
 
 Kills all processes in BUILDKITE_BUILD_CHECKOUT_PATH but not `notepad.exe` and `explorer.exe`
 
