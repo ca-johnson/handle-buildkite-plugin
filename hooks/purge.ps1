@@ -5,32 +5,36 @@
 # We can then attempt to kill each of these processes if any exist.
 #
 # The expected usage is as follows:
-#   powershell -NoProfile -NonInteractive purge.ps1 MyApp.exe,BuildTool.exe
+#   powershell -NoProfile -NonInteractive purge.ps1 -Dir C:\my-directory
 param(
   [String] $Dir = $(pwd).Path,
-  [String[]] $processes
+  [String[]] $Whitelist = ('explorer.exe', 'handle64.exe')
 )
 
-echo "Running in directory: $Dir"
+"Processes running in: $Dir"
+"Whitelisted: $Whitelist"
 
-function Kill-Dangling-Processes {
-	param( [string]$ProcessName )
+$OUT=$(handle64 -accepteula -nobanner $Dir)
 
-	echo "Looking for ${ProcessName} processes to kill..."
-	$Out=$(handle64 -accepteula -nobanner -p "$($ProcessName)" $Dir)
-  echo $Out
-	ForEach ($line in $($OUT -split "`r`n"))
+$processMap = @{}
+ForEach ($line in $OUT -split "`r`n")
+{
+	$Result = $([regex]::Match("$line", "(.*?)\s+pid: (.*) type"))
+	if ($Result.Success)
 	{
-		$Result = $([regex]::Match("$line", "pid: (.*) type"))
-		if ($Result.Success)
-		{
-			$ppid = $Result.Groups[1].Value
-			taskkill /f /t /pid $ppid
-		}
+		$image = $Result.Groups[1].Value
+		$ppid = $Result.Groups[2].Value
+		$processMap.$ppid = $image
 	}
 }
 
-ForEach ($Process in $processes)
+$processMap | Format-Table
+
+foreach($ppid in $processMap.keys)
 {
-	Kill-Dangling-Processes $Process
+	$imageName = $processMap.$ppid
+	if (! $whitelist.Contains($imageName)){
+		"Killing $imageName"
+		taskkill /f /t /pid $ppid
+	}
 }
