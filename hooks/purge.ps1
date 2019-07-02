@@ -35,6 +35,7 @@ foreach($ppid in $processMap.keys)
 	$imageName = $processMap.$ppid
 	if (! $whitelist.Contains($imageName)){
 		"Killing $imageName"
-		taskkill /f /t /pid $ppid
+		# taskkill /f /t /pid $ppid
+		wmic process where name="$imageName" call terminate
 	}
 }
