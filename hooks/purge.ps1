@@ -11,9 +11,10 @@ param(
   [String[]] $Whitelist = ('explorer.exe', 'handle64.exe')
 )
 
-"Processes running in: $Dir"
-"Whitelisted: $Whitelist"
+"Process tree:"
+pslist -t
 
+"Handles in: $Dir"
 $OUT=$(handle64 -accepteula -nobanner $Dir)
 
 $processMap = @{}
@@ -30,10 +31,11 @@ ForEach ($line in $OUT -split "`r`n")
 
 $processMap | Format-Table
 
+"Whitelisted: $Whitelist"
 foreach($ppid in $processMap.keys)
 {
 	$imageName = $processMap.$ppid
-	if (! $whitelist.Contains($imageName)){
+	if (! $Whitelist.Contains($imageName)){
 		"Killing $imageName"
 		# taskkill /f /t /pid $ppid
 		wmic process where name="$imageName" call terminate
