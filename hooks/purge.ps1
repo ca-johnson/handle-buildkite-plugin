@@ -12,9 +12,9 @@ param(
 )
 
 "Process tree:"
-pslist -t -nobanner
+pslist -t -accepteula -nobanner
 
-"Handles in: $Dir"
+"Handles in $Dir:"
 $OUT=$(handle64 -accepteula -nobanner $Dir)
 
 $processMap = @{}
@@ -29,15 +29,22 @@ ForEach ($line in $OUT -split "`r`n")
 	}
 }
 
-$processMap | Format-Table
-
-"Whitelisted: $Whitelist"
-foreach($ppid in $processMap.keys)
+if ($processMap.Count -eq 0)
 {
-	$imageName = $processMap.$ppid
-	if (! $Whitelist.Contains($imageName)){
-		"Killing $imageName"
-		# taskkill /f /t /pid $ppid
-		wmic process where name="$imageName" call terminate
+    "No handles found."
+}
+else
+{
+	$processMap | Format-Table
+
+	"Whitelisted: $Whitelist"
+	foreach($ppid in $processMap.keys)
+	{
+		$imageName = $processMap.$ppid
+		if (! $Whitelist.Contains($imageName)){
+			"Killing $imageName"
+			# taskkill /f /t /pid $ppid
+			wmic process where name="$imageName" call terminate
+		}
 	}
 }
