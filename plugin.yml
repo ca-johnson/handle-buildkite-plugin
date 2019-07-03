@@ -3,6 +3,7 @@ description: Run sysinternals handle.exe to terminate processes that have files 
 author: https://github.com/ca-johnson
 requirements:
   - handle64
+  - pslist
 configuration:
   properties:
     whitelist:
