@@ -14,7 +14,7 @@ param(
 "Process tree:"
 pslist -t -accepteula -nobanner
 
-"Handles in $Dir:"
+"Finding handles in $Dir"
 $OUT=$(handle64 -accepteula -nobanner $Dir)
 
 $processMap = @{}
