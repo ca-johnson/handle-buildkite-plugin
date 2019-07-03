@@ -11,7 +11,6 @@ param(
   [String[]] $Whitelist = ('explorer.exe', 'handle64.exe')
 )
 
-"Process tree:"
 pslist -t -accepteula -nobanner
 
 "Finding handles in $Dir"
