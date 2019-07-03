@@ -12,7 +12,7 @@ param(
 )
 
 "Process tree:"
-pslist -t
+pslist -t -nobanner
 
 "Handles in: $Dir"
 $OUT=$(handle64 -accepteula -nobanner $Dir)
