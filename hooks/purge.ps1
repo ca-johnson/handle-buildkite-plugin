@@ -41,9 +41,8 @@ else
 	{
 		$imageName = $processMap.$ppid
 		if (! $Whitelist.Contains($imageName)){
-			"Killing $imageName"
-			# taskkill /f /t /pid $ppid
-			wmic process where name="$imageName" call terminate
+			"Killing $ppid"
+			taskkill /f /t /pid $ppid
 		}
 	}
 }
