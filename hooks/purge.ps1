@@ -13,8 +13,9 @@ param(
 
 pslist -t -accepteula -nobanner
 
-"Finding handles in $Dir"
-$OUT=$(handle64 -accepteula -nobanner $Dir)
+$absDir = Resolve-Path $Dir
+"Finding handles in $absDir"
+$OUT=$(handle64 -accepteula -nobanner $absDir)
 
 $processMap = @{}
 ForEach ($line in $OUT -split "`r`n")
