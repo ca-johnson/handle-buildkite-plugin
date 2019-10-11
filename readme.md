@@ -6,7 +6,15 @@ Requires handle64 in the PATH.
 
 Unless a whitelist is specified, kills all processes.
 
-## Example
+## Examples
+
+Kills all processes in BUILDKITE_BUILD_CHECKOUT_PATH but not `notepad.exe` and `explorer.exe`
+
+```yaml
+steps:
+  plugins:
+    - ca-johnson/taskkill: ~
+```
 
 Kills all processes in BUILDKITE_BUILD_CHECKOUT_PATH but not `notepad.exe` and `explorer.exe`
 
