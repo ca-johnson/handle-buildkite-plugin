@@ -8,7 +8,7 @@ Unless a whitelist is specified, kills all processes.
 
 ## Examples
 
-Kills all processes in BUILDKITE_BUILD_CHECKOUT_PATH but not `notepad.exe` and `explorer.exe`
+Kills all processes in BUILDKITE_BUILD_CHECKOUT_PATH
 
 ```yaml
 steps:
