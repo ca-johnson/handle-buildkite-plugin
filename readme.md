@@ -13,8 +13,8 @@ Kills all processes in BUILDKITE_BUILD_CHECKOUT_PATH
 ```yaml
 steps:
   plugins:
-    # https://github.com/ca-johnson/taskkill-buildkite-plugin
-    - ca-johnson/taskkill: ~
+    # https://github.com/improbable-eng/taskkill-buildkite-plugin
+    - improbable-eng/taskkill: ~
 ```
 
 Kills all processes in BUILDKITE_BUILD_CHECKOUT_PATH but not `notepad.exe` and `explorer.exe`
@@ -22,7 +22,7 @@ Kills all processes in BUILDKITE_BUILD_CHECKOUT_PATH but not `notepad.exe` and `
 ```yaml
 steps:
   plugins:
-    # https://github.com/ca-johnson/taskkill-buildkite-plugin
-    - ca-johnson/taskkill:
+    # https://github.com/improbable-eng/taskkill-buildkite-plugin
+    - improbable-eng/taskkill:
         whitelist: notepad.exe,explorer.exe
 ```
