@@ -13,7 +13,12 @@ param(
 
 pslist -t -accepteula -nobanner
 
-$absDir = Resolve-Path $Dir
+if (Test-Path -Path $Dir) {
+	$absDir = Resolve-Path $Dir -ErrorAction Stop
+} else {
+	"Directory $Dir does not exist, skipping"
+	exit 0
+}
 "Finding handles in $absDir"
 $OUT=$(handle64 -accepteula -nobanner $absDir)
 
