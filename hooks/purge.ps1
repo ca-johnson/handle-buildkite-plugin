@@ -13,8 +13,13 @@ param(
 
 pslist -t -accepteula -nobanner
 
-$absDir = Resolve-Path $Dir
-"Finding handles in $absDir"
+if (Test-Path -Path $Dir) {
+	$absDir = Resolve-Path $Dir -ErrorAction Stop
+} else {
+	Write-Output "Skipping: Directory $($Dir) does not exist, no file-handles can exist."
+	exit 0
+}
+Write-Output "Finding handles in $absDir"
 $OUT=$(handle64 -accepteula -nobanner $absDir)
 
 $processMap = @{}
@@ -31,18 +36,18 @@ ForEach ($line in $OUT -split "`r`n")
 
 if ($processMap.Count -eq 0)
 {
-    "No handles found."
+    Write-Output "No handles found."
 }
 else
 {
 	$processMap | Format-Table
 
-	"Whitelisted: $Whitelist"
+	Write-Output "Whitelisted: $Whitelist"
 	foreach($ppid in $processMap.keys)
 	{
 		$imageName = $processMap.$ppid
 		if (! $Whitelist.Contains($imageName)){
-			"Killing $ppid"
+			Write-Output "Killing $ppid"
 			taskkill /f /t /pid $ppid
 		}
 	}
