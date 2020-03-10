@@ -15,7 +15,7 @@ pslist -t -accepteula -nobanner
 
 if (Test-Path -Path $Dir) {
 	$absDir = Resolve-Path $Dir -ErrorAction Stop
-} else {{
+} else {
 	Write-Output "Skipping: Directory $($Dir) does not exist, no file-handles can exist."
 	exit 0
 }
